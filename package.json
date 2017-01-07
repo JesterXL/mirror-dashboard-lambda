@@ -1,0 +1,27 @@
+{
+  "name": "mirror-dashboard-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesterXL/mirror-dashboard-lambda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesterXL/mirror-dashboard-lambda/issues"
+  },
+  "homepage": "https://github.com/JesterXL/mirror-dashboard-lambda#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
