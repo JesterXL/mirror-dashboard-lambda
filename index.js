@@ -15,6 +15,7 @@ const getResponse = (data)=>
         body: JSON.stringify({result: true, data}),
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         }
     };
 };
@@ -30,7 +31,7 @@ const getErrorResponse = (error)=>
     };
 };
 
-const getWeather = ()=>
+const getWeather = (request)=>
 {
     return new Promise((success, failure)=>
     {
@@ -62,7 +63,7 @@ const getWeather = ()=>
     });
 };
 
-const getTime = (done)=>
+const getTime = (request)=>
 {
     return new Promise((success, failure)=>
     {
@@ -75,7 +76,7 @@ const getTime = (done)=>
             {
                 const timeString = _.get(body, 'time', new Date().toString());
                 const now = new Date(timeString);
-                now.setHours(now.getHours() + 3);
+                // now.setHours(now.getHours() + 3);
                 success(now);
             }
             else
@@ -87,12 +88,14 @@ const getTime = (done)=>
     });
 };
 
-const getNews = ()=>
+const getNews = (request)=>
 {
+    log("request:", request);
     return new Promise((success, failure)=>
     {
         request(`https://newsapi.org/v1/articles?source=cnn&apiKey=${NEWS_KEY}`, (error, response, body)=>
         {
+            log("news callback");
             let json;
             try
             {
@@ -105,6 +108,7 @@ const getNews = ()=>
             }
             if(!error && response.statusCode == 200)
             {
+                log("news success");
                 return success(json);
             }
             else
@@ -147,5 +151,10 @@ const handler = (event, context, callback) =>
 
 
 module.exports = {
-    handler
+    handler,
+    getResponse,
+    getErrorResponse,
+    getWeather,
+    getTime,
+    getNews
 };
