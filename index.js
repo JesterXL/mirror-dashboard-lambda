@@ -149,7 +149,6 @@ const handler = (event, context, callback) =>
     });
 };
 
-
 module.exports = {
     handler,
     getResponse,
